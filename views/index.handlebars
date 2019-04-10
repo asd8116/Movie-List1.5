@@ -37,7 +37,9 @@
                 {{this.rating}}
                 <i class="fas fa-star fa-xs"></i>
                 <a href="/restaurants/{{this.id}}/edit">編輯</a>
-                <button type="submit">刪除</button>
+                <form action="/todos/{{this.id}}/delete" method="POST">
+                  <button type="submit">刪除</button>
+                </form>
               </span>
             </div>
           </div>
