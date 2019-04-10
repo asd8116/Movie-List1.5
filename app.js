@@ -1,6 +1,7 @@
 // variables
 const express = require('express')
 const exphbs = require('express-handlebars')
+const bodyParser = require('body-parser')
 const restaurantList = require('./restaurant.json')
 const Restaurants = require('./models/restaurants')
 const app = express()
@@ -30,15 +31,45 @@ app.engine("handlebars",
 
 app.set("view engine", "handlebars")
 
-// static files
 app.use(express.static("public"))
+
+app.use(bodyParser.urlencoded({
+  extended: true
+}))
 
 // routes
 app.get("/", (req, res) => {
-  res.render("index", {
-    restaurants: restaurantList.results
-  });
-});
+  Restaurants.find((err, restaurants) => {
+    if (err) return console.error(err)
+    return res.render('index', {
+      restaurants: restaurants
+    })
+  })
+})
+
+// 新增一筆餐廳 頁面
+app.get('/restaurants/new', (req, res) => {
+  return res.render('new')
+})
+
+// 新增一筆餐廳
+app.post('/restaurants', (req, res) => {
+  const restaurant = Restaurants({
+    name: req.body.name,
+    category: req.body.category,
+    image: req.body.image,
+    location: req.body.location,
+    phone: req.body.phone,
+    google_map: req.body.google_map,
+    rating: req.body.rating,
+    description: req.body.description,
+  })
+
+  restaurant.save(err => {
+    if (err) return console.error(err)
+    return res.redirect('/')
+  })
+})
 
 app.get("/restaurants/:rest_id", (req, res) => {
   const resChoose = restaurantList.results.filter(
