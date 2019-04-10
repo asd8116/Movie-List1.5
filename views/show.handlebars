@@ -2,7 +2,6 @@
 <div class="container">
   <div class="row">
     <div class="col-12 col-md-10 mx-auto">
-
       <p class="mb-1">
         <span class="text-secondary">
           <i class="fas fa-utensils pr-2"></i>
@@ -30,20 +29,24 @@
         {{restaurant.phone}}
       </p>
 
-      <p class="mb-2">
+      <p class="mb-3">
         {{restaurant.description}}
       </p>
 
-      <p class="mb-5">
-        <a href="/">回到首頁</a>
-        <a href="/restaurants/{{restaurant.id}}/edit">編輯</a>
-        <form action="/todos/{{{restaurant.id}}}/delete" method="POST">
-          <button type="submit">刪除</button>
-        </form>
-      </p>
-
       <img class="rounded mx-auto d-block mb-4 w-100" src="{{restaurant.image}}" alt="{{restaurant.name}}"
-        style="max-width: 600px;">
+        style="max-width: 600px; max-height: 400px;">
+
+      <div class="row justify-content-end mb-5">
+        <div class="col-2">
+          <a href="/">回到首頁</a>
+        </div>
+        <div class="col-2">
+          <a href="/restaurants/{{restaurant.id}}/edit">編輯</a>
+        </div>
+        <form class="col-3" action="/restaurants/{{restaurant.id}}/delete" method="POST">
+          <button class="puts" type="submit">刪除</button>
+        </form>
+      </div>
     </div>
   </div>
 </div>
