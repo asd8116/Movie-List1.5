@@ -47,12 +47,12 @@ app.get("/", (req, res) => {
   })
 })
 
-// 新增一筆餐廳 頁面
+// 新增一筆 餐廳 頁面
 app.get('/restaurants/new', (req, res) => {
   return res.render('new')
 })
 
-// 新增一筆餐廳
+// 新增一筆 餐廳
 app.post('/restaurants', (req, res) => {
   const restaurant = Restaurants({
     name: req.body.name,
@@ -71,12 +71,41 @@ app.post('/restaurants', (req, res) => {
   })
 })
 
-// 顯示一筆餐廳的詳細內容
+// 顯示一筆 餐廳 的詳細內容
 app.get("/restaurants/:id", (req, res) => {
   Restaurants.findById(req.params.id, (err, restaurant) => {
     if (err) return console.error(err)
     return res.render('show', {
       restaurant: restaurant
+    })
+  })
+})
+
+// 修改 餐廳 頁面
+app.get('/restaurants/:id/edit', (req, res) => {
+  Restaurants.findById(req.params.id, (err, restaurant) => {
+    if (err) return console.error(err)
+    return res.render('edit', {
+      restaurant: restaurant
+    })
+  })
+})
+
+// 修改 餐廳
+app.post('/restaurants/:id', (req, res) => {
+  Restaurants.findById(req.params.id, (err, restaurant) => {
+    if (err) return console.error(err)
+    restaurant.name = req.body.name
+    restaurant.category = req.body.category
+    restaurant.image = req.body.image
+    restaurant.location = req.body.location
+    restaurant.phone = req.body.phone
+    restaurant.google_map = req.body.google_map
+    restaurant.rating = req.body.rating
+    restaurant.description = req.body.description
+    restaurant.save(err => {
+      if (err) return console.error(err)
+      return res.redirect(`/restaurants/${req.params.id}`)
     })
   })
 })
