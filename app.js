@@ -2,7 +2,6 @@
 const express = require('express')
 const exphbs = require('express-handlebars')
 const bodyParser = require('body-parser')
-const restaurantList = require('./restaurant.json')
 const Restaurants = require('./models/restaurants')
 const app = express()
 const port = 3000
