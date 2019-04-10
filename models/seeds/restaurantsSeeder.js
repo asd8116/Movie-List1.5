@@ -24,5 +24,16 @@ db.once('open', () => {
     description: '沙巴巴批塔是台灣第一家純手工批塔專賣店,只選用最新鮮的頂級原料,以及道地的中東家傳配方。'
   })
 
+  Restaurants.create({
+    name: '梅子鰻蒲燒專賣店',
+    category: '日本料理',
+    image: 'https://assets-lighthouse.s3.amazonaws.com/uploads/image/file/5628/02.jpg',
+    location: '台北市中山區林森北路 107 巷 8 號',
+    phone: '02 2521 2813',
+    google_map: 'https://goo.gl/maps/cUJEmFSRKyH2',
+    rating: '4.3',
+    description: '鰻魚、鰻魚飯、真空鰻魚'
+  })
+
   console.log('done')
 })
