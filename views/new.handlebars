@@ -1,11 +1,23 @@
-<form action="/restaurants" method="POST">
-  <input type="text" placeholder="餐廳名字" name="name">
-  <input type="text" placeholder="料理類別" name="category">
-  <input type="text" placeholder="圖片網址" name="image">
-  <input type="text" placeholder="地址" name="location">
-  <input type="text" placeholder="電話" name="phone">
-  <input type="text" placeholder="Google地圖網址" name="google_map">
-  <input type="text" placeholder="評價" name="rating">
-  <input type="text" placeholder="描述" name="description">
-  <button type="submit">Create</button>
-</form>
+<div class="container mt-3">
+  <form action="/restaurants" method="POST">
+    <div class="row mb-3">
+      <input class="puts col-4" type="text" placeholder="餐廳名字" name="name">
+      <input class="puts col-4 ml-auto" type="text" placeholder="料理類別" name="category">
+    </div>
+    <div class="row mb-3">
+      <input class="puts col-8" type="text" placeholder="圖片網址" name="image">
+      <input class="puts col-4" type="text" placeholder="Google地圖網址" name="google_map">
+    </div>
+    <div class="row mb-3">
+      <input class="puts col-2" type="text" placeholder="電話" name="phone">
+      <input class="puts col-8" type="text" placeholder="地址" name="location">
+      <input class="puts col-2" type="text" placeholder="評價" name="rating">
+    </div>
+    <div class="row mb-3">
+      <input class="puts col-12" type="text" placeholder="描述" name="description">
+    </div>
+    <div class="row mb-3">
+      <button class="puts" type="submit">Create</button>
+    </div>
+  </form>
+</div>

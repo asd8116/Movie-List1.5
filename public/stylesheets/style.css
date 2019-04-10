@@ -20,6 +20,7 @@ header {
   filter: blur(3px);
 }
 
+/* index */
 .search-bar .search-bar-outer {
   margin: 0 auto;
   max-width: 680px;
@@ -69,6 +70,7 @@ header {
   font-size: 0.8rem;
 }
 
+/* show */
 .restaurant-show-title {
   position: relative;
   top: -100px;
@@ -76,6 +78,12 @@ header {
   text-align: center;
   font-size: 3rem;
   text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+/* new */
+.puts {
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
 }
 
 @media screen and (max-width: 992px) {
