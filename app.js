@@ -71,14 +71,14 @@ app.post('/restaurants', (req, res) => {
   })
 })
 
-app.get("/restaurants/:rest_id", (req, res) => {
-  const resChoose = restaurantList.results.filter(
-    rest => rest.id == req.params.rest_id
-  );
-
-  res.render("show", {
-    restaurant: resChoose[0]
-  });
+// 顯示一筆餐廳的詳細內容
+app.get("/restaurants/:id", (req, res) => {
+  Restaurants.findById(req.params.id, (err, restaurant) => {
+    if (err) return console.error(err)
+    return res.render('show', {
+      restaurant: restaurant
+    })
+  })
 })
 
 app.get("/search", (req, res) => {
