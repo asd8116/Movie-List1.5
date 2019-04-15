@@ -1,5 +1,5 @@
 const express = require('express')
-const router = express.Router
+const router = express.Router()
 const Restaurants = require('../models/restaurants')
 
 // 新增一筆 餐廳 頁面
