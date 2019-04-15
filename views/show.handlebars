@@ -43,7 +43,7 @@
         <div class="col-2">
           <a href="/restaurants/{{restaurant.id}}/edit">編輯</a>
         </div>
-        <form class="col-3" action="/restaurants/{{restaurant.id}}/delete" method="POST">
+        <form class="col-3" action="/restaurants/{{restaurant.id}}/delete?_method=DELETE" method="POST">
           <button class="puts" type="submit">刪除</button>
         </form>
       </div>

@@ -2,6 +2,7 @@
 const express = require('express')
 const exphbs = require('express-handlebars')
 const bodyParser = require('body-parser')
+const methodOverride = require('method-override')
 const Restaurants = require('./models/restaurants')
 const app = express()
 const port = 3000
@@ -35,6 +36,8 @@ app.use(express.static("public"))
 app.use(bodyParser.urlencoded({
   extended: true
 }))
+
+app.use(methodOverride('_method'))
 
 // routes
 app.get("/", (req, res) => {
@@ -91,7 +94,7 @@ app.get('/restaurants/:id/edit', (req, res) => {
 })
 
 // 修改 餐廳
-app.post('/restaurants/:id', (req, res) => {
+app.put('/restaurants/:id', (req, res) => {
   Restaurants.findById(req.params.id, (err, restaurant) => {
     if (err) return console.error(err)
     restaurant.name = req.body.name
@@ -110,7 +113,7 @@ app.post('/restaurants/:id', (req, res) => {
 })
 
 // 刪除 餐廳
-app.post('/restaurants/:id/delete', (req, res) => {
+app.delete('/restaurants/:id/delete', (req, res) => {
   Restaurants.findById(req.params.id, (err, restaurant) => {
     if (err) return console.error(err)
     restaurant.remove(err => {
