@@ -1,24 +1,49 @@
-<div class="container mt-3">
+<div class="container mx-auto mt-5">
+  <h2 class="text-center">填寫資料表單</h2>
   <form action="/restaurants" method="POST">
-    <div class="row justify-content-around mb-3">
-      <input class="puts col-4" type="text" placeholder="餐廳名字" name="name">
-      <input class="puts col-4" type="text" placeholder="料理類別" name="category">
+    <div class="form-group">
+      <label for="name">餐廳名字</label>
+      <input type="text" name="name" class="form-control" id="name" placeholder="餐廳名字">
     </div>
-    <div class="row justify-content-between mb-3">
-      <input class="puts col-6" type="text" placeholder="圖片網址" name="image">
-      <input class="puts col-4" type="text" placeholder="Google地圖網址" name="google_map">
+
+    <div class="form-group">
+      <label for="category">料理類別</label>
+      <input type="text" name="category" class="form-control" id="category" placeholder="日本料理">
     </div>
-    <div class="row justify-content-between mb-3">
-      <input class="puts col-2" type="text" placeholder="電話" name="phone">
-      <input class="puts col-4" type="text" placeholder="地址" name="location">
-      <input class="puts col-2" type="text" placeholder="評價" name="rating">
+
+    <div class="form-group">
+      <label for="phone">電話</label>
+      <input type="text" name="phone" class="form-control" id="phone" placeholder="03 356 8602">
     </div>
-    <div class="row mb-3">
-      <input class="puts col-12" type="text" placeholder="描述" name="description">
+
+    <div class="form-group">
+      <label for="location">地址</label>
+      <input type="text" name="location" class="form-control" id="location" placeholder="桃園市桃園區中正路1193號">
     </div>
-    <div class="row mb-3">
-      <button class="puts col-2" type="submit">新增</button>
-      <span class="puts col-1 ml-auto"><a href="/">回到首頁</a></span>
+
+    <div class="form-group">
+      <label for="rating">評價</label>
+      <input type="text" name="rating" class="form-control" id="rating" placeholder="4.2">
+    </div>
+
+    <div class="form-group">
+      <label for="image">餐廳圖片</label>
+      <input type="text" name="image" class="form-control" id="image"
+        placeholder="https://assets-lighthouse.s3.amazonaws.com/uploads/image/file/5630/04.jpg">
+    </div>
+
+    <div class="form-group">
+      <label for="google_map">Google Map</label>
+      <input type="text" name="google_map" class="form-control" id="google_map" placeholder="https://pse.is/EUC2Y">
+    </div>
+
+    <div class="form-group">
+      <label for="description">餐廳簡介</label>
+      <textarea type="text" name="description" class="form-control" id="description" cols="50" rows="3"></textarea>
+    </div>
+
+    <div class="form-group">
+      <button class="btn btn-outline-warning btn-block" type="submit">新增</button>
     </div>
   </form>
 </div>

@@ -20,9 +20,6 @@
 <div class="container mt-5">
   <div class="row">
     <div class="col-md-10 col-12 mx-auto">
-      <div class="mb-3">
-        <h1><a href="/restaurants/new">添加您喜愛的餐廳</a></h1>
-      </div>
       <div class="card-columns">
         {{#each restaurants}}
         <a href="/restaurants/{{this.id}}" class="text-secondary">
@@ -38,11 +35,9 @@
                 <i class="fas fa-star fa-xs"></i>
               </span>
               <div class="row justify-content-end">
-                <div class="puts col-3">
-                  <a href="/restaurants/{{this.id}}/edit">編輯</a>
-                </div>
-                <form class="col-4" action="/restaurants/{{this.id}}/delete?_method=DELETE" method="POST">
-                  <button class="puts" type="submit">刪除</button>
+                <a href="/restaurants/{{this.id}}/edit" class="btn btn-success mr-1">編輯</a>
+                <form action="/restaurants/{{this.id}}/delete?_method=DELETE" method="POST">
+                  <button class="btn btn-danger mr-2" type="submit">刪除</button>
                 </form>
               </div>
             </div>
