@@ -42,6 +42,8 @@ app.use(methodOverride('_method'))
 // routes
 app.use('/', require('./routes/home'))
 app.use('/restaurants', require('./routes/restaurants'))
+app.use('/search', require('./routes/search'))
+app.use('/sort', require('./routes/sort'))
 
 // start and listen
 app.listen(port, () => {

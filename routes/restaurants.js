@@ -9,16 +9,8 @@ router.get('/new', (req, res) => {
 
 // 新增一筆 餐廳
 router.post('/', (req, res) => {
-  const restaurant = Restaurants({
-    name: req.body.name,
-    category: req.body.category,
-    image: req.body.image,
-    location: req.body.location,
-    phone: req.body.phone,
-    google_map: req.body.google_map,
-    rating: req.body.rating,
-    description: req.body.description,
-  })
+  // 將使用者送出的 req.body 作為參數傳入 Restaurant 物件使用，即可賦予資料
+  const restaurant = Restaurants(req.body)
 
   restaurant.save(err => {
     if (err) return console.error(err)
@@ -50,14 +42,10 @@ router.get('/:id/edit', (req, res) => {
 router.put('/:id', (req, res) => {
   Restaurants.findById(req.params.id, (err, restaurant) => {
     if (err) return console.error(err)
-    restaurant.name = req.body.name
-    restaurant.category = req.body.category
-    restaurant.image = req.body.image
-    restaurant.location = req.body.location
-    restaurant.phone = req.body.phone
-    restaurant.google_map = req.body.google_map
-    restaurant.rating = req.body.rating
-    restaurant.description = req.body.description
+
+    // 更新表單資料，Object.assign(target array, ...sources array)
+    Object.assign(restaurant, req.body)
+
     restaurant.save(err => {
       if (err) return console.error(err)
       return res.redirect(`/restaurants/${req.params.id}`)
@@ -72,22 +60,6 @@ router.delete('/:id/delete', (req, res) => {
     restaurant.remove(err => {
       if (err) return console.error(err)
       return res.redirect('/')
-    })
-  })
-})
-
-// Search
-router.get("/search", (req, res) => {
-  const keyword = req.query.keyword
-  Restaurants.find({
-    name: {
-      $regex: keyword,
-      $options: 'i'
-    }
-  }, (err, restaurant) => {
-    if (err) return console.error(err)
-    return res.render('index', {
-      restaurants: restaurant
     })
   })
 })

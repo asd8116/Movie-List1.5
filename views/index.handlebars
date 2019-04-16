@@ -1,8 +1,8 @@
 <!-- search bar -->
-<div class="container search-bar">
+<div class="container search-bar mb-3">
   <div class="search-bar-outer">
     <div class="search-bar-inner">
-      <form action="/restaurants/search">
+      <form action="/search">
         <h4 class="mb-2">尋找餐廳：</h4>
         <div class="input-group">
           <input type="text" name="keyword" class="form-control" placeholder="輸入餐廳名字" aria-label="Restaurant Name..."
@@ -16,8 +16,27 @@
   </div>
 </div>
 
+<!-- sort list -->
+<div class="container mb-3">
+  <div class="row">
+    <div class="mx-auto">
+      <div class="dropdown">
+        <button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownButton" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">排序方式</button>
+        <div class="dropdown-menu" aria-labelledby="dropdownButton">
+          <a class="dropdown-item" href="/sort/rating">分數</a>
+          <a class="dropdown-item" href="/sort/category">類別</a>
+          <a class="dropdown-item" href="/sort/location">地區</a>
+          <a class="dropdown-item" href="/sort/asc">名字(升冪)</a>
+          <a class="dropdown-item" href="/sort/desc">名字(降冪)</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- restaurant list -->
-<div class="container mt-5">
+<div class="container mb-4">
   <div class="row">
     <div class="col-md-10 col-12 mx-auto">
       <div class="card-columns">
