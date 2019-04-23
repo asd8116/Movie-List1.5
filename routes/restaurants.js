@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const Restaurants = require('../models/restaurants')
+const { authenticated } = require('../config/auth')
 
 // 列出全部 餐廳
 router.get('/', authenticated, (req, res) => {

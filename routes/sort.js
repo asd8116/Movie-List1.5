@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const Restaurants = require('../models/restaurants')
+const { authenticated } = require('../config/auth')
 
 // 餐廳分數排序
 router.get('/rating', authenticated, (req, res) => {
