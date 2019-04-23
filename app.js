@@ -4,6 +4,7 @@ const bodyParser = require('body-parser')
 const methodOverride = require('method-override')
 const session = require('express-session')
 const passport = require('passport')
+const flash = require('connect-flash')
 const app = express()
 const Restaurants = require('./models/restaurants')
 const port = 3000
@@ -52,6 +53,8 @@ app.use(
   })
 )
 
+app.use(flash())
+
 app.use(passport.initialize())
 app.use(passport.session())
 
@@ -60,6 +63,8 @@ require('./config/passport')(passport)
 app.use((req, res, next) => {
   res.locals.user = req.user
   res.locals.isAuthenticated = req.isAuthenticated()
+  res.locals.success_msg = req.flash('success_msg')
+  res.locals.warning_msg = req.flash('warning_msg')
   next()
 })
 
@@ -69,6 +74,7 @@ app.use('/restaurants', require('./routes/restaurants'))
 app.use('/search', require('./routes/search'))
 app.use('/sort', require('./routes/sort'))
 app.use('/users', require('./routes/users'))
+app.use('/auth', require('./routes/auths'))
 
 // start and listen
 app.listen(port, () => {
