@@ -23,19 +23,22 @@ db.once('open', () => {
 })
 
 // template engine
-app.engine("handlebars",
+app.engine(
+  'handlebars',
   exphbs({
-    defaultLayout: "main"
+    defaultLayout: 'main'
   })
-);
+)
 
-app.set("view engine", "handlebars")
+app.set('view engine', 'handlebars')
 
-app.use(express.static("public"))
+app.use(express.static('public'))
 
-app.use(bodyParser.urlencoded({
-  extended: true
-}))
+app.use(
+  bodyParser.urlencoded({
+    extended: true
+  })
+)
 
 app.use(methodOverride('_method'))
 
@@ -44,8 +47,9 @@ app.use('/', require('./routes/home'))
 app.use('/restaurants', require('./routes/restaurants'))
 app.use('/search', require('./routes/search'))
 app.use('/sort', require('./routes/sort'))
+app.use('/users', require('./routes/user'))
 
 // start and listen
 app.listen(port, () => {
-  console.log(`Express is listening on http://localhost:${port}`);
+  console.log(`Express is listening on http://localhost:${port}`)
 })
