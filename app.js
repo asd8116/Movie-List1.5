@@ -1,16 +1,18 @@
-// variables
 const express = require('express')
 const exphbs = require('express-handlebars')
 const bodyParser = require('body-parser')
 const methodOverride = require('method-override')
-const Restaurants = require('./models/restaurants')
+const session = require('express-session')
+const passport = require('passport')
 const app = express()
+const Restaurants = require('./models/restaurants')
 const port = 3000
 
 // setting mongoose
 const mongoose = require('mongoose')
 mongoose.connect('mongodb://localhost/restaurants', {
-  useNewUrlParser: true
+  useNewUrlParser: true,
+  useCreateIndex: true
 })
 const db = mongoose.connection
 
@@ -42,12 +44,31 @@ app.use(
 
 app.use(methodOverride('_method'))
 
+app.use(
+  session({
+    secret: 'key',
+    resave: 'false',
+    saveUninitialized: 'false'
+  })
+)
+
+app.use(passport.initialize())
+app.use(passport.session())
+
+require('./config/passport')(passport)
+
+app.use((req, res, next) => {
+  res.locals.user = req.user
+  res.locals.isAuthenticated = req.isAuthenticated()
+  next()
+})
+
 // routes
 app.use('/', require('./routes/home'))
 app.use('/restaurants', require('./routes/restaurants'))
 app.use('/search', require('./routes/search'))
 app.use('/sort', require('./routes/sort'))
-app.use('/users', require('./routes/user'))
+app.use('/users', require('./routes/users'))
 
 // start and listen
 app.listen(port, () => {

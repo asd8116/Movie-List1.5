@@ -2,15 +2,20 @@ const express = require('express')
 const router = express.Router()
 const Restaurants = require('../models/restaurants')
 
+// 列出全部 餐廳
+router.get('/', authenticated, (req, res) => {
+  res.send('列出所有 餐廳')
+})
+
 // 新增一筆 餐廳 頁面
-router.get('/new', (req, res) => {
+router.get('/new', authenticated, (req, res) => {
   return res.render('new')
 })
 
 // 新增一筆 餐廳
-router.post('/', (req, res) => {
+router.post('/', authenticated, (req, res) => {
   // 將使用者送出的 req.body 作為參數傳入 Restaurant 物件使用，即可賦予資料
-  const restaurant = Restaurants(req.body)
+  const restaurant = Restaurants(req.body, { userId: req.user._id })
 
   restaurant.save(err => {
     if (err) return console.error(err)
@@ -19,8 +24,8 @@ router.post('/', (req, res) => {
 })
 
 // 顯示一筆 餐廳 的詳細內容
-router.get("/:id", (req, res) => {
-  Restaurants.findById(req.params.id, (err, restaurant) => {
+router.get('/:id', authenticated, (req, res) => {
+  Restaurants.findOne({ _id: req.params.id, userId: req.user._id }, (err, restaurant) => {
     if (err) return console.error(err)
     return res.render('show', {
       restaurant: restaurant
@@ -29,8 +34,8 @@ router.get("/:id", (req, res) => {
 })
 
 // 修改 餐廳 頁面
-router.get('/:id/edit', (req, res) => {
-  Restaurants.findById(req.params.id, (err, restaurant) => {
+router.get('/:id/edit', authenticated, (req, res) => {
+  Restaurants.findOne({ _id: req.params.id, userId: req.user._id }, (err, restaurant) => {
     if (err) return console.error(err)
     return res.render('edit', {
       restaurant: restaurant
@@ -39,8 +44,8 @@ router.get('/:id/edit', (req, res) => {
 })
 
 // 修改 餐廳
-router.put('/:id', (req, res) => {
-  Restaurants.findById(req.params.id, (err, restaurant) => {
+router.put('/:id', authenticated, (req, res) => {
+  Restaurants.findOne({ _id: req.params.id, userId: req.user._id }, (err, restaurant) => {
     if (err) return console.error(err)
 
     // 更新表單資料，Object.assign(target array, ...sources array)
@@ -54,8 +59,8 @@ router.put('/:id', (req, res) => {
 })
 
 // 刪除 餐廳
-router.delete('/:id/delete', (req, res) => {
-  Restaurants.findById(req.params.id, (err, restaurant) => {
+router.delete('/:id/delete', authenticated, (req, res) => {
+  Restaurants.findOne({ _id: req.params.id, userId: req.user._id }, (err, restaurant) => {
     if (err) return console.error(err)
     restaurant.remove(err => {
       if (err) return console.error(err)
