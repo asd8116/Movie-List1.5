@@ -47,7 +47,8 @@ node ./models/seeds/restaurantsSeeder.js
 node app.js
 ```
 
-成功連結後，瀏覽器輸入 http://localhost:3000，網頁即可運行並執行動作。
+成功連結後，瀏覽器輸入 http://localhost:3000，
+網頁即可運行並執行動作。
 
 ## Register & Login
 
