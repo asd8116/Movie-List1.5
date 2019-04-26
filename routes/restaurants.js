@@ -16,7 +16,7 @@ router.get('/new', authenticated, (req, res) => {
 // 新增一筆 餐廳
 router.post('/', authenticated, (req, res) => {
   // 將使用者送出的 req.body 作為參數傳入 Restaurant 物件使用，即可賦予資料
-  const restaurant = Restaurants(req.body, { userId: req.user._id })
+  const restaurant = Restaurants({ ...req.body, userId: req.user._id })
 
   restaurant.save(err => {
     if (err) return console.error(err)
