@@ -9,6 +9,10 @@ const app = express()
 const Restaurants = require('./models/restaurants')
 const port = 3000
 
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config() // 使用 dotenv 讀取 .env 檔案
+}
+
 // setting mongoose
 const mongoose = require('mongoose')
 mongoose.connect('mongodb://localhost/restaurants', {

@@ -1,10 +1,10 @@
-# 我的餐廳清單
+# 餐廳清單
 
 運用 Express & MongoDB 打造的網頁，將你有興趣的美食餐廳，填入相關資料後進行收錄，並呈現出店名、料理類別、評分等訊息。
 
 ![畫面截圖](https://i.imgur.com/UCaYjxM.jpg)
 
-## Built With
+## Environment SetUp
 
 - [MongoDB](https://www.mongodb.com/download-center/community) - Database
 
@@ -37,7 +37,6 @@ npm install
 依序匯入種子檔案，並用 `ctrl + c` 結束每次匯入
 
 ```
-node ./models/seeds/usersSeeder.js
 node ./models/seeds/restaurantsSeeder.js
 ```
 
