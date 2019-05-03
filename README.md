@@ -37,7 +37,7 @@ npm install
 依序匯入種子檔案，並用 `ctrl + c` 結束每次匯入
 
 ```
-node ./models/seeds/restaurantsSeeder.js
+node models/seeds/restaurantsSeeder.js
 ```
 
 開啟本地伺服器。
